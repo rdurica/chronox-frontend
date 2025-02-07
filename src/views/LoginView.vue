@@ -1,6 +1,6 @@
 <template>
   <section class="content">
-    <login-form></login-form>
+    <login-form />
   </section>
 </template>
 
