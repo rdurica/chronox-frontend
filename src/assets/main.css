@@ -15,6 +15,38 @@ a,
   padding: 3px;
 }
 
+
+.green {
+  margin-bottom: 1em;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  margin-right: 2em;
+}
+
+.green:hover {
+  text-shadow: hsla(160, 100%, 37%, 1) 0 0 10px;
+}
+
+.date-picker {
+  padding: 10px; /* Vnitřní odsazení */
+  border-radius: 5px; /* Zaoblené rohy */
+  font-size: 16px; /* Velikost písma */
+  outline: none; /* Odstranění výchozího ohraničení při focusu */
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #282828;
+  color: white;
+  border: none;
+  appearance: none; /* Odstranění výchozího stylu prohlížeče */
+  -webkit-appearance: none; /* Pro Safari */
+  -moz-appearance: none; /* Pro Firefox */
+}
+
+.text-danger {
+  color: red;
+}
+
 @media (min-width: 1024px) {
   body {
     display: flex;

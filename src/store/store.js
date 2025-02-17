@@ -12,7 +12,7 @@ const store = createStore({
     },
     actions: {
         async login({commit}, credentials) {
-            await axios.post('https://localhost/auth', credentials).then(function (response) {
+            await axios.post('/auth', credentials).then(function (response) {
                 commit('setToken', response.data.token);
                 localStorage.setItem('token', response.data.token);
             });
