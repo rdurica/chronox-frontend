@@ -6,11 +6,11 @@
       <div class="card-stats">
         <div class="stat-row">
           <span class="title">Tasks:</span>
-          <span class="value">3</span>
+          <span class="value"><slot name="taskCount"></slot></span>
         </div>
         <div class="stat-row">
           <span class="title">Total:</span>
-          <span class="value">8h</span>
+          <span class="value"><slot name="taskTotalTime"></slot> h</span>
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: "DayCard"
+  name: "DayCard",
 }
 </script>
 
@@ -31,16 +31,18 @@ h3{
   display: inline-flex; /* Změněno na inline-flex pro lepší zarovnání */
   justify-content: center;
   align-items: center;
-  margin: 0.8em 0.8em 0.8em 0;
+  margin: 0 1rem 0 0;
   max-width: 270px;
   flex-wrap: wrap;
 }
 
 .card-body {
-  border: 1px solid #2c3e50;
-  padding: 1em;
-  box-shadow: rgba(44, 62, 80, 0.39) 0 0 10px;
+  background-color: #282828;
   border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #282828;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card-body:hover {

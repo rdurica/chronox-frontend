@@ -23,6 +23,12 @@
         <template v-slot:date>
           {{ formatDate(day.entryDate) }}
         </template>
+      <template v-slot:taskCount>
+        {{ day.tasks.length }}
+      </template>
+      <template v-slot:taskTotalTime>
+        {{ calculateTotalTime(day.tasks) }}
+      </template>
     </day-card>
   </section>
   <button class="green load-more" @click="loadData(true)"><fa-icon icon="fa-download" /> Load data</button>
@@ -96,6 +102,7 @@ export default {
       const that = this;
       await axios.post('api/days', postData)
           .then(function (response) {
+            that.reload();
             that.$router.push({name: 'day', params: {id: response.data.id}});
           }).catch(function (error) {
             that.newDayError = error;
@@ -108,7 +115,25 @@ export default {
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const day = String(date.getDate()).padStart(2, '0');
 
-      return `${year}-${month}-${day}`;
+      return `${day}.${month}.${year}`;
+    },
+    calculateTotalTime(tasks) {
+      if (!tasks || !Array.isArray(tasks)) {
+        return 0;
+      }
+
+      let totalTime = 0;
+      for (let task of tasks) {
+        if (task.subTasks && Array.isArray(task.subTasks)) {
+          for (let subtask of task.subTasks) {
+            const minutes = parseFloat(subtask?.minutes);
+            if (!isNaN(minutes)) {
+              totalTime += minutes;
+            }
+          }
+        }
+      }
+      return (totalTime / 60).toFixed(2);
     }
   },
   mounted() {
